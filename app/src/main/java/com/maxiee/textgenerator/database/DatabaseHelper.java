@@ -21,6 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DataTable.CREATE);
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int from, int to) {
+
+    }
+
     public static synchronized DatabaseHelper instance(Context context) {
         if (instance == null) {
             instance = new DatabaseHelper(context);

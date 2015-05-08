@@ -1,14 +1,19 @@
-package com.maxiee.textgenerator;
+package com.maxiee.textgenerator.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
-import com.maxiee.textgenerator.adapters.DrawerListAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.maxiee.textgenerator.R;
+import com.maxiee.textgenerator.adapters.DrawerListAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private Toolbar toolbar;
+
+    private DataFragment dataFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,26 @@ public class MainActivity extends AppCompatActivity {
             drawerItems
         ));
 
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                FragmentManager fm = getSupportFragmentManager();
+
+                switch (position) {
+                    case 0:
+                        break;
+                    case 1:
+                        if (dataFragment == null) {
+                            dataFragment = new DataFragment();
+                        }
+                        fm.beginTransaction()
+                                .replace(R.id.container, dataFragment)
+                                .addToBackStack(null)
+                                .commit();
+                }
+            }
+        });
 
     }
 
