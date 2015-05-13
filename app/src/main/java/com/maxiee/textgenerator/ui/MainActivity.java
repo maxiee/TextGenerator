@@ -15,6 +15,8 @@ import android.widget.ListView;
 import com.maxiee.textgenerator.R;
 import com.maxiee.textgenerator.adapters.DrawerListAdapter;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,14 +59,20 @@ public class MainActivity extends AppCompatActivity {
     void setupDrawer() {
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerList = (ListView)findViewById(R.id.drawer);
-        String[] drawerItems = {
-            "生成器",
-            "语料库",
-            "关于"
-        };
+        ArrayList<DrawerListAdapter.Item> data = new ArrayList<>();
+        data.add(new DrawerListAdapter.Item(
+                getString(R.string.generator),
+                R.drawable.ic_action_description));
+        data.add(new DrawerListAdapter.Item(
+                getString(R.string.database),
+                R.drawable.ic_action_inbox
+        ));
+
         drawerList.setAdapter(new DrawerListAdapter(
-            this,
-            drawerItems
+                this,
+                data,
+                R.color.white,
+                R.color.accent
         ));
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
+                        drawerList.setSelection(position);
                         break;
                     case 1:
+                        drawerList.setSelection(position);
                         if (dataFragment == null) {
                             dataFragment = new DataFragment();
                         }

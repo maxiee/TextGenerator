@@ -22,7 +22,7 @@
         <ListView
             android:id="@+id/drawer"
             android:layout_width="240dp"
-            android:background="@color/almost_white"
+            android:background="@color/orange_200"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"/>
