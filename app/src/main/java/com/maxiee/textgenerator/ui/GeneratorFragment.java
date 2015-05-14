@@ -3,6 +3,7 @@ package com.maxiee.textgenerator.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class GeneratorFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_generator, container, false);
 
         mGenerateredText = (EditText) rootView.findViewById(R.id.text);
+        mGenerateredText.setInputType(InputType.TYPE_NULL);
         mGenerateButton = (Button) rootView.findViewById(R.id.generate);
 
         return rootView;

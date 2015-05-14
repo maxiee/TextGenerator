@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.maxiee.textgenerator.R;
+import com.maxiee.textgenerator.ui.dialogs.NewTextDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 /**
@@ -29,7 +30,7 @@ public class DataFragment extends Fragment {
         mFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                new NewTextDialog(getActivity()).show();
             }
         });
 

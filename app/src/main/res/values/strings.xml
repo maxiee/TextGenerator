@@ -9,4 +9,6 @@
     <string name="database">语料库</string>
     <string name="btn_generate">生成</string>
     <string name="generator_hint">点击生成键</string>
+    <string name="add">添加</string>
+    <string name="paste">粘贴</string>
 </resources>
