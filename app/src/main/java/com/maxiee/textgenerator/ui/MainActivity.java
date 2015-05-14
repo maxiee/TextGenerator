@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private DrawerLayout drawerLayout;
     private ListView drawerList;
+    private DrawerListAdapter drawerListAdapter;
     private Toolbar toolbar;
+    private int mCurrentSelectedPosition = 0;
 
     private DataFragment dataFragment;
 
@@ -67,23 +69,26 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.database),
                 R.drawable.ic_action_inbox
         ));
-
-        drawerList.setAdapter(new DrawerListAdapter(
+        drawerListAdapter = new DrawerListAdapter(
                 this,
                 data,
                 R.color.white,
                 R.color.accent
-        ));
+        );
+        drawerList.setAdapter(drawerListAdapter);
+        drawerList.setItemChecked(0, true);
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+                drawerList.setItemChecked(position, true);
+                drawerListAdapter.setSelectedPosition(position);
+
                 FragmentManager fm = getSupportFragmentManager();
 
                 switch (position) {
                     case 0:
-                        drawerList.setSelection(position);
                         break;
                     case 1:
                         drawerList.setSelection(position);

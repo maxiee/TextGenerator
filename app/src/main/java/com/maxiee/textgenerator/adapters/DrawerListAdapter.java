@@ -29,8 +29,8 @@ public class DrawerListAdapter extends BaseAdapter {
             @ColorRes int normalColor, @ColorRes int accentColor) {
         this.mInflater = LayoutInflater.from(context);
         this.data = data;
-        this.normalColor = normalColor;
-        this.accentColor = accentColor;
+        this.normalColor = context.getResources().getColor(normalColor);
+        this.accentColor = context.getResources().getColor(accentColor);
     }
 
     @Override
@@ -66,6 +66,8 @@ public class DrawerListAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.iv_icon = (ImageView) convertView.findViewById(R.id.icon);
             holder.tv_icon = (TextView) convertView.findViewById(R.id.title);
+
+            convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
@@ -76,8 +78,10 @@ public class DrawerListAdapter extends BaseAdapter {
         } catch (Exception e) {
             holder.iv_icon.setImageResource(R.mipmap.ic_launcher);
         }
+
         if (position != selectedPosition) {
             try {
+                holder.tv_icon.setTextColor(normalColor);
                 holder.iv_icon.setColorFilter(normalColor, PorterDuff.Mode.MULTIPLY);
             } catch (Exception e) {}
         } else {
