@@ -1,6 +1,8 @@
 package com.maxiee.textgenerator.ui;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +15,8 @@ import android.widget.ListView;
 import com.maxiee.textgenerator.R;
 import com.maxiee.textgenerator.database.CorpusTable;
 import com.maxiee.textgenerator.database.DatabaseHelper;
+import com.maxiee.textgenerator.database.ModelTable;
+import com.maxiee.textgenerator.markov.Markov;
 import com.maxiee.textgenerator.ui.dialogs.NewTextDialog;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -52,6 +56,16 @@ public class DataFragment extends Fragment {
                         Log.d("maxieed", "isAdded!");
                         mCorpus.add(textAdded);
                         mArrayAdapter.notifyDataSetChanged();
+                        //TODO wrap into a AsyncTask
+                        String model = Markov.generateModel(mCorpus, 1).toString();
+                        ContentValues values = new ContentValues();
+                        values.put(ModelTable.CONTENT, model);
+                        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+                        db.beginTransaction();
+                        db.update(ModelTable.NAME, values, ModelTable.ID + " =?", new String[]{"1"});
+                        db.setTransactionSuccessful();
+                        db.endTransaction();
+
                     }
                 });
                 newTextDialog.show();

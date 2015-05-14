@@ -1,5 +1,6 @@
 package com.maxiee.textgenerator.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -18,6 +19,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CorpusTable.CREATE);
+        db.execSQL(ModelTable.CREATE);
+        ContentValues values = new ContentValues();
+        values.put(ModelTable.CONTENT, "");
+        db.insert(ModelTable.NAME, null, values);
     }
 
     @Override
