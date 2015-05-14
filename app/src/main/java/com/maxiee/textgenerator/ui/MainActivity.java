@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int mCurrentSelectedPosition = 0;
 
     private DataFragment dataFragment;
+    private GeneratorFragment mGeneratorFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(drawerToggle);
 
         setupDrawer();
+
+        FragmentManager fm = getSupportFragmentManager();
+        if (mGeneratorFragment == null) {
+            mGeneratorFragment = new GeneratorFragment();
+        }
+        fm.beginTransaction()
+                .replace(R.id.container, mGeneratorFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     void setupDrawer() {
@@ -82,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+                if (mCurrentSelectedPosition == position) {
+                    return;
+                }
+
+                mCurrentSelectedPosition = position;
                 drawerList.setItemChecked(position, true);
                 drawerListAdapter.setSelectedPosition(position);
 
@@ -89,9 +104,15 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
+                        if (mGeneratorFragment == null) {
+                            mGeneratorFragment = new GeneratorFragment();
+                        }
+                        fm.beginTransaction()
+                                .replace(R.id.container, mGeneratorFragment)
+                                .addToBackStack(null)
+                                .commit();
                         break;
                     case 1:
-                        drawerList.setSelection(position);
                         if (dataFragment == null) {
                             dataFragment = new DataFragment();
                         }
@@ -99,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
                                 .replace(R.id.container, dataFragment)
                                 .addToBackStack(null)
                                 .commit();
+                        break;
                 }
             }
         });
-
     }
 
 

@@ -7,4 +7,6 @@
     <string name="close">关闭</string>
     <string name="generator">生成器</string>
     <string name="database">语料库</string>
+    <string name="btn_generate">生成</string>
+    <string name="generator_hint">点击生成键</string>
 </resources>
