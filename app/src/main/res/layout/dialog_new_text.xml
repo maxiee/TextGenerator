@@ -8,6 +8,7 @@
     <include layout="@layout/toolbar" />
 
     <EditText
+        android:id="@+id/text"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:lines="10"/>
