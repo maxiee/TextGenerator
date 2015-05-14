@@ -21,7 +21,7 @@ public class Markov {
     public static JSONObject generateModel(ArrayList<String> textList, int order) {
         JSONObject model = new JSONObject();
         for (String text:textList) {
-            text = pureText(text);
+//            text = pureText(text);
             for (int i = 0; i < text.length() - order; i++) {
                 String fragment = text.substring(i, i+order);
                 JSONObject fragmentModel;
@@ -51,7 +51,7 @@ public class Markov {
         return model;
     }
 
-    private static String pureText(String text) {
+    public static String pureText(String text) {
         Pattern p = Pattern.compile(mBlackList1);
         Matcher m = p.matcher(text);
         p = Pattern.compile(mBlackList2);

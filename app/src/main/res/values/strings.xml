@@ -11,4 +11,6 @@
     <string name="generator_hint">点击生成键</string>
     <string name="add">添加</string>
     <string name="paste">粘贴</string>
+    <string name="updating">正在分析, 保存中...</string>
+    <string name="warnning_empty">内容不能为空</string>
 </resources>
