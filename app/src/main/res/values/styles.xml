@@ -12,6 +12,7 @@
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
 </resources>
