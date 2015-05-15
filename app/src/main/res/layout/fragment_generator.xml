@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="200dp"
+        android:layout_height="match_parent"
         android:textSize="20sp"
+        android:gravity="center"
         android:hint="@string/generator_hint"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
